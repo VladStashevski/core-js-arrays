@@ -418,8 +418,9 @@ function getElementByIndices(arr, indices) {
  *  getFalsyValuesCount([ -1, 'false', null, 0 ]) => 2
  *  getFalsyValuesCount([ null, undefined, NaN, false, 0, '' ]) => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+
+function getFalsyValuesCount(arr) {
+  return arr.filter((x) => !x).length;
 }
 
 /**
@@ -440,8 +441,16 @@ function getFalsyValuesCount(/* arr */) {
  *                              [0,0,0,1,0],
  *                              [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+
+function getIdentityMatrix(n) {
+  return Array(n)
+    .fill()
+
+    .map((x, indexI) =>
+      Array(n)
+        .fill(0)
+        .map((y, indexY) => (indexI === indexY ? 1 : 0))
+    );
 }
 
 /**
@@ -455,8 +464,14 @@ function getIdentityMatrix(/* n */) {
  *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIndicesOfOddNumbers(/* numbers */) {
-  throw new Error('Not implemented');
+
+function getIndicesOfOddNumbers(numbers) {
+  return numbers.reduce((indices, currentNumber, currentIndex) => {
+    if (currentNumber % 2 !== 0) {
+      indices.push(currentIndex);
+    }
+    return indices;
+  }, []);
 }
 
 /**
