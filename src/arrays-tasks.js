@@ -484,8 +484,11 @@ function getIndicesOfOddNumbers(numbers) {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues(/* arr */) {
-  throw new Error('Not implemented');
+
+function getHexRGBValues(arr) {
+  return arr.map(
+    (number) => `#${number.toString(16).padStart(6, '0').toUpperCase()}`
+  );
 }
 
 /**
@@ -502,8 +505,10 @@ function getHexRGBValues(/* arr */) {
  *   getMaxItems([ 10, 2, 7, 5, 3, -5 ], 3) => [ 10, 7, 5 ]
  *   getMaxItems([ 10, 10, 10, 10 ], 3) => [ 10, 10, 10 ]
  */
-function getMaxItems(/* arr, n */) {
-  throw new Error('Not implemented');
+
+function getMaxItems(arr, n) {
+  const sortedArray = [...arr].sort((a, b) => b - a);
+  return sortedArray.slice(0, Math.min(n, sortedArray.length));
 }
 
 /**
@@ -518,8 +523,10 @@ function getMaxItems(/* arr, n */) {
  *    findCommonElements(['a', 'b', 'c'], ['b', 'c', 'd']) => [ 'b', 'c' ]
  *    findCommonElements([1, 2, 3], ['a', 'b', 'c']) => []
  */
-function findCommonElements(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+
+function findCommonElements(arr1, arr2) {
+  const set2 = new Set(arr2);
+  return arr1.filter((x) => set2.has(x));
 }
 
 /**
@@ -533,8 +540,17 @@ function findCommonElements(/* arr1, arr2 */) {
  *    findLongestIncreasingSubsequence([3, 10, 2, 1, 20]) => 2
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
-function findLongestIncreasingSubsequence(/* nums */) {
-  throw new Error('Not implemented');
+
+function findLongestIncreasingSubsequence(nums) {
+  const res = nums
+
+    .map((x, index) => (x < nums[index + 1] ? 1 : 0))
+    .join('')
+
+    .split('0')
+    .map((y) => y.length + 1);
+
+  return Math.max(...res);
 }
 
 /**
@@ -551,8 +567,11 @@ function findLongestIncreasingSubsequence(/* nums */) {
  *  propagateItemsByPositionIndex([ 'a', 'b', 'c', null ]) => [ 'a', 'b', 'b', 'c', 'c', 'c',  null, null, null, null ]
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+
+function propagateItemsByPositionIndex(arr) {
+  return Array.from({ length: arr.length }, (x, index) =>
+    Array(index + 1).fill(arr[index])
+  ).flat();
 }
 
 /**
